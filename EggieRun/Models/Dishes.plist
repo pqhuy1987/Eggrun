@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>id</key>
+		<integer>0</integer>
+		<key>name</key>
+		<string>Smashed Egg</string>
+		<key>description</key>
+		<string>Oops, the poor egg has smashed! And because the floor is too slippery thus you fell down and was sent to hospital!</string>
+		<key>hintDescription</key>
+		<string>Crack, crack!</string>
+		<key>imageNamed</key>
+		<string>smashed-egg</string>
+		<key>rarity</key>
+		<integer>1</integer>
+		<key>standardWeight</key>
+		<integer>-1</integer>
+		<key>standardCondiments</key>
+		<array>
+			<integer>0</integer>
+			<integer>0</integer>
+			<integer>0</integer>
+		</array>
+		<key>requiredIngredients</key>
+		<array/>
+		<key>requiredCooker</key>
+		<integer>0</integer>
+		<key>distanceMode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>-4</integer>
+		<key>name</key>
+		<string>Unspeakable Boiled Egg</string>
+		<key>description</key>
+		<string>A boiled egg that cannot describe.</string>
+		<key>hintDescription</key>
+		<string>Dark cuisine!@#!$%^&amp;*&amp;^</string>
+		<key>imageNamed</key>
+		<string>black-boiled</string>
+		<key>rarity</key>
+		<integer>1</integer>
+		<key>standardWeight</key>
+		<integer>10</integer>
+		<key>standardCondiments</key>
+		<array>
+			<integer>0</integer>
+			<integer>0</integer>
+			<integer>0</integer>
+		</array>
+		<key>requiredIngredients</key>
+		<array/>
+		<key>requiredCooker</key>
+		<integer>3</integer>
+		<key>distanceMode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>-3</integer>
+		<key>name</key>
+		<string>Nameless Baked Egg</string>
+		<key>description</key>
+		<string>A baked egg that cannot describe.</string>
+		<key>hintDescription</key>
+		<string>Dark cuisine!@#!$%^&amp;*&amp;^</string>
+		<key>imageNamed</key>
+		<string>black-baked</string>
+		<key>rarity</key>
+		<integer>1</integer>
+		<key>standardWeight</key>
+		<integer>1</integer>
+		<key>standardCondiments</key>
+		<array>
+			<integer>0</integer>
+			<integer>0</integer>
+			<integer>0</integer>
+		</array>
+		<key>requiredIngredients</key>
+		<array/>
+		<key>requiredCooker</key>
+		<integer>2</integer>
+		<key>distanceMode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>-2</integer>
+		<key>name</key>
+		<string>Amorphous Fried Egg</string>
+		<key>description</key>
+		<string>A fried egg that cannot describe.</string>
+		<key>hintDescription</key>
+		<string>Dark cuisine!@#!$%^&amp;*&amp;^</string>
+		<key>imageNamed</key>
+		<string>black-fried</string>
+		<key>rarity</key>
+		<integer>1</integer>
+		<key>standardWeight</key>
+		<integer>1</integer>
+		<key>standardCondiments</key>
+		<array>
+			<integer>0</integer>
+			<integer>0</integer>
+			<integer>0</integer>
+		</array>
+		<key>requiredIngredients</key>
+		<array/>
+		<key>requiredCooker</key>
+		<integer>1</integer>
+		<key>distanceMode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>-1</integer>
+		<key>name</key>
+		<string>Plain Boiled Egg</string>
+		<key>description</key>
+		<string>A boring plain boiled egg. Always single because others think he&apos;s 小白脸</string>
+		<key>hintDescription</key>
+		<string>European Eggie</string>
+		<key>imageNamed</key>
+		<string>plain-boiled-egg</string>
+		<key>rarity</key>
+		<integer>1</integer>
+		<key>standardWeight</key>
+		<integer>-2</integer>
+		<key>standardCondiments</key>
+		<array>
+			<integer>0</integer>
+			<integer>0</integer>
+			<integer>0</integer>
+		</array>
+		<key>requiredIngredients</key>
+		<array/>
+		<key>requiredCooker</key>
+		<integer>3</integer>
+		<key>distanceMode</key>
+		<integer>2</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>16</integer>
+		<key>name</key>
+		<string>Chinese Steamed Egg</string>
+		<key>description</key>
+		<string>This is a Steamed egg pretending itself to be a dessert.</string>
+		<key>hintDescription</key>
+		<string>Pot made!</string>
+		<key>imageNamed</key>
+		<string>chinese-steamed-eggs</string>
+		<key>rarity</key>
+		<integer>2</integer>
+		<key>standardWeight</key>
+		<integer>10</integer>
+		<key>standardCondiments</key>
+		<array>
+			<real>0.5</real>
+			<real>0.3</real>
+			<real>0.2</real>
+		</array>
+		<key>requiredIngredients</key>
+		<array>
+			<integer>100</integer>
+		</array>
+		<key>requiredCooker</key>
+		<integer>3</integer>
+		<key>distanceMode</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>15</integer>
+		<key>name</key>
+		<string>Cantoness Scrambled Egg</string>
+		<key>description</key>
+		<string>A Cantoness scrambled egg but it is not originated in GuangDong. No one knows why its name is this.</string>
+		<key>hintDescription</key>
+		<string>pot made egg with some salt</string>
+		<key>imageNamed</key>
+		<string>guangdong-style-scrambled-egg</string>
+		<key>rarity</key>
+		<integer>2</integer>
+		<key>standardWeight</key>
+		<integer>10</integer>
+		<key>standardCondiments</key>
+		<array>
+			<real>0.4</real>
+			<real>0.3</real>
+			<real>0.3</real>
+		</array>
+		<key>requiredIngredients</key>
+		<array/>
+		<key>requiredCooker</key>
+		<integer>3</integer>
+		<key>distanceMode</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>14</integer>
+		<key>name</key>
+		<string>Soy Egg / Tea Egg</string>
+		<key>description</key>
+		<string>Eggie&apos;s cosplay as a soldier. The food that those mainland Chinese cannot afford!&gt;_&lt; </string>
+		<key>hintDescription</key>
+		<string>African eggie</string>
+		<key>imageNamed</key>
+		<string>soy-tea-egg</string>
+		<key>rarity</key>
+		<integer>2</integer>
+		<key>standardWeight</key>
+		<integer>10</integer>
+		<key>standardCondiments</key>
+		<array>
+			<real>0.6</real>
+			<real>0.2</real>
+			<real>0.2</real>
+		</array>
+		<key>requiredIngredients</key>
+		<array/>
+		<key>requiredCooker</key>
+		<integer>3</integer>
+		<key>distanceMode</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>13</integer>
+		<key>name</key>
+		<string>Steamed Egg with Milk</string>
+		<key>description</key>
+		<string>Eggie jumped in milk to take a beauty SPA shower.</string>
+		<key>hintDescription</key>
+		<string>Eggie in milk shower</string>
+		<key>imageNamed</key>
+		<string>steamed-egg-with-milk</string>
+		<key>rarity</key>
+		<integer>3</integer>
+		<key>standardWeight</key>
+		<integer>10</integer>
+		<key>standardCondiments</key>
+		<array>
+			<real>0.4</real>
+			<real>0.4</real>
+			<real>0.2</real>
+		</array>
+		<key>requiredIngredients</key>
+		<array>
+			<integer>103</integer>
+		</array>
+		<key>requiredCooker</key>
+		<integer>3</integer>
+		<key>distanceMode</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>12</integer>
+		<key>name</key>
+		<string>Souffle</string>
+		<key>description</key>
+		<string>A trendy dish originated from France. Eggie felt its became fashion icon</string>
+		<key>hintDescription</key>
+		<string>An oven made French dessert.</string>
+		<key>imageNamed</key>
+		<string>souffle</string>
+		<key>rarity</key>
+		<integer>3</integer>
+		<key>standardWeight</key>
+		<integer>10</integer>
+		<key>standardCondiments</key>
+		<array>
+			<real>0.2</real>
+			<real>0.6</real>
+			<real>0.2</real>
+		</array>
+		<key>requiredIngredients</key>
+		<array>
+			<integer>103</integer>
+		</array>
+		<key>requiredCooker</key>
+		<integer>2</integer>
+		<key>distanceMode</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>11</integer>
+		<key>name</key>
+		<string>Strawberry Custard</string>
+		<key>description</key>
+		<string>Strawberry was too sweet to refuse. Eggie melt itself to give her a hug.</string>
+		<key>hintDescription</key>
+		<string>A pot made sweet dessert with fruits</string>
+		<key>imageNamed</key>
+		<string>strawberry-custard</string>
+		<key>rarity</key>
+		<integer>3</integer>
+		<key>standardWeight</key>
+		<integer>10</integer>
+		<key>standardCondiments</key>
+		<array>
+			<real>0.3</real>
+			<real>0.5</real>
+			<real>0.2</real>
+		</array>
+		<key>requiredIngredients</key>
+		<array>
+			<integer>103</integer>
+			<integer>107</integer>
+		</array>
+		<key>requiredCooker</key>
+		<integer>3</integer>
+		<key>distanceMode</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>10</integer>
+		<key>name</key>
+		<string>Strawberry Cake</string>
+		<key>description</key>
+		<string>Strawberry cake! A sweet and nice reason for visiting your beloved dentist!</string>
+		<key>hintDescription</key>
+		<string>A must-have for birthday!</string>
+		<key>imageNamed</key>
+		<string>strawberry-cake</string>
+		<key>rarity</key>
+		<integer>3</integer>
+		<key>standardWeight</key>
+		<integer>40</integer>
+		<key>standardCondiments</key>
+		<array>
+			<real>0.2</real>
+			<real>0.7</real>
+			<real>0.1</real>
+		</array>
+		<key>requiredIngredients</key>
+		<array>
+			<integer>102</integer>
+			<integer>103</integer>
+			<integer>107</integer>
+		</array>
+		<key>requiredCooker</key>
+		<integer>2</integer>
+		<key>distanceMode</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>9</integer>
+		<key>name</key>
+		<string>Chocolate Cake</string>
+		<key>description</key>
+		<string>Eggie hided himself in a cake to secretly make you gain weight.</string>
+		<key>hintDescription</key>
+		<string>A must-have for birthday!</string>
+		<key>imageNamed</key>
+		<string>chocolate-cake</string>
+		<key>rarity</key>
+		<integer>3</integer>
+		<key>standardWeight</key>
+		<integer>50</integer>
+		<key>standardCondiments</key>
+		<array>
+			<real>0.2</real>
+			<real>0.7</real>
+			<real>0.1</real>
+		</array>
+		<key>requiredIngredients</key>
+		<array>
+			<integer>102</integer>
+			<integer>103</integer>
+			<integer>108</integer>
+		</array>
+		<key>requiredCooker</key>
+		<integer>2</integer>
+		<key>distanceMode</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>3</integer>
+		<key>name</key>
+		<string>Fried Egg &amp; Bacon</string>
+		<key>description</key>
+		<string>Mummy&apos;s favorite food for breakfast. The best food to pretend that you live healthily!</string>
+		<key>hintDescription</key>
+		<string>A pan fried dish that needs bacon.</string>
+		<key>imageNamed</key>
+		<string>fried-egg-bacon</string>
+		<key>rarity</key>
+		<integer>4</integer>
+		<key>standardWeight</key>
+		<integer>10</integer>
+		<key>standardCondiments</key>
+		<array>
+			<real>0.6</real>
+			<real>0.2</real>
+			<real>0.2</real>
+		</array>
+		<key>requiredIngredients</key>
+		<array>
+			<integer>106</integer>
+		</array>
+		<key>requiredCooker</key>
+		<integer>1</integer>
+		<key>distanceMode</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>4</integer>
+		<key>name</key>
+		<string>Scramble Egg &amp; Tomato</string>
+		<key>description</key>
+		<string>Tomato was always sitting on the opposite side to eggie in fridge. This time, they were picked up and fried together. The start of the love means the extinction. </string>
+		<key>hintDescription</key>
+		<string>Egg &amp; tomato, the very first dish you learnt!</string>
+		<key>imageNamed</key>
+		<string>scramble-egg-tomato</string>
+		<key>rarity</key>
+		<integer>4</integer>
+		<key>standardWeight</key>
+		<integer>10</integer>
+		<key>standardCondiments</key>
+		<array>
+			<real>0.6</real>
+			<real>0.3</real>
+			<real>0.1</real>
+		</array>
+		<key>requiredIngredients</key>
+		<array>
+			<integer>101</integer>
+		</array>
+		<key>requiredCooker</key>
+		<integer>1</integer>
+		<key>distanceMode</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>5</integer>
+		<key>name</key>
+		<string>Genki Omurice</string>
+		<key>description</key>
+		<string>Genki Omurice! Eggie felt energetic before being eaten by someone else.</string>
+		<key>hintDescription</key>
+		<string>A Japanese style egg dish.</string>
+		<key>imageNamed</key>
+		<string>genki-omurice</string>
+		<key>rarity</key>
+		<integer>4</integer>
+		<key>standardWeight</key>
+		<integer>10</integer>
+		<key>standardCondiments</key>
+		<array>
+			<real>0.5</real>
+			<real>0.3</real>
+			<real>0.2</real>
+		</array>
+		<key>requiredIngredients</key>
+		<array>
+			<integer>104</integer>
+		</array>
+		<key>requiredCooker</key>
+		<integer>1</integer>
+		<key>distanceMode</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>6</integer>
+		<key>name</key>
+		<string>Egg Sandwich</string>
+		<key>description</key>
+		<string>Eggie was squeezed in between a sandwich and started thinking about the meaning of life</string>
+		<key>hintDescription</key>
+		<string>A fresh day starts with breakfast sandwich!</string>
+		<key>imageNamed</key>
+		<string>egg-sandwich</string>
+		<key>rarity</key>
+		<integer>4</integer>
+		<key>standardWeight</key>
+		<integer>10</integer>
+		<key>standardCondiments</key>
+		<array>
+			<real>0.5</real>
+			<real>0.3</real>
+			<real>0.2</real>
+		</array>
+		<key>requiredIngredients</key>
+		<array>
+			<integer>101</integer>
+			<integer>105</integer>
+			<integer>106</integer>
+		</array>
+		<key>requiredCooker</key>
+		<integer>2</integer>
+		<key>distanceMode</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>7</integer>
+		<key>name</key>
+		<string>Egg Pancake</string>
+		<key>description</key>
+		<string>A Eggie Pancake that make you constantly visit toilet.</string>
+		<key>hintDescription</key>
+		<string>Something called Pancake!</string>
+		<key>imageNamed</key>
+		<string>egg-pancake</string>
+		<key>rarity</key>
+		<integer>4</integer>
+		<key>standardWeight</key>
+		<integer>10</integer>
+		<key>standardCondiments</key>
+		<array>
+			<real>0.4</real>
+			<real>0.4</real>
+			<real>0.2</real>
+		</array>
+		<key>requiredIngredients</key>
+		<array>
+			<integer>100</integer>
+		</array>
+		<key>requiredCooker</key>
+		<integer>1</integer>
+		<key>distanceMode</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>8</integer>
+		<key>name</key>
+		<string>Spicy Fried Rice with Egg</string>
+		<key>description</key>
+		<string>Eggie&apos;s face turned red. Rice thought he&apos;s just shy and danced more happily. Eggie dead because it&apos;s too spicy.</string>
+		<key>hintDescription</key>
+		<string>Spicy fried dish.</string>
+		<key>imageNamed</key>
+		<string>sichuan-style-fried-rice-with-egg</string>
+		<key>rarity</key>
+		<integer>4</integer>
+		<key>standardWeight</key>
+		<integer>10</integer>
+		<key>standardCondiments</key>
+		<array>
+			<real>0.5</real>
+			<real>0.2</real>
+			<real>0.3</real>
+		</array>
+		<key>requiredIngredients</key>
+		<array>
+			<integer>100</integer>
+			<integer>104</integer>
+		</array>
+		<key>requiredCooker</key>
+		<integer>1</integer>
+		<key>distanceMode</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>1</integer>
+		<key>name</key>
+		<string>Oyako Don</string>
+		<key>description</key>
+		<string>Oyako Don, fried chicken with egg. A happy family combo!</string>
+		<key>hintDescription</key>
+		<string>Mysterious dish!</string>
+		<key>imageNamed</key>
+		<string>oyako-don</string>
+		<key>rarity</key>
+		<integer>5</integer>
+		<key>standardWeight</key>
+		<integer>-1</integer>
+		<key>standardCondiments</key>
+		<array>
+			<integer>0</integer>
+			<integer>0</integer>
+			<integer>0</integer>
+		</array>
+		<key>requiredIngredients</key>
+		<array/>
+		<key>requiredCooker</key>
+		<integer>-1</integer>
+		<key>distanceMode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>2</integer>
+		<key>name</key>
+		<string>Surströmming &amp; Egg</string>
+		<key>description</key>
+		<string>Surstromming, the princess of Atlantic Ocean, who maintain its beauty by frozen ice blocks floating in the sea. No one can tell the smell of Surstromming Egg, because those who tried it were all in emergency room. </string>
+		<key>hintDescription</key>
+		<string>The ultimate luxury.</string>
+		<key>imageNamed</key>
+		<string>surstromming-egg</string>
+		<key>rarity</key>
+		<integer>5</integer>
+		<key>standardWeight</key>
+		<integer>-3</integer>
+		<key>standardCondiments</key>
+		<array>
+			<integer>0</integer>
+			<integer>0</integer>
+			<integer>0</integer>
+		</array>
+		<key>requiredIngredients</key>
+		<array>
+			<integer>109</integer>
+		</array>
+		<key>requiredCooker</key>
+		<integer>100</integer>
+		<key>distanceMode</key>
+		<integer>1</integer>
+	</dict>
+</array>
+</plist>
