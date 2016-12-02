@@ -16,7 +16,7 @@ class TestConstructable: Constructable {
         id = data["id"] as! Int
     }
     
-    func canConstruct(resources: [Int : Int]) -> Int {
+    func canConstruct(_ resources: [Int : Int]) -> Int {
         switch id {
         case 0:
             return 0

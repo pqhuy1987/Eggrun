@@ -21,5 +21,5 @@ protocol Constructable {
     //     number will be constructed
     // If returning a number more than 0, the engine will use RNG to choose one.
     //   - The possibility of each constructable being selected is the weight returned.
-    func canConstruct(resources: [Int: Int]) -> Int
+    func canConstruct(_ resources: [Int: Int]) -> Int
 }

@@ -9,8 +9,8 @@
 import Foundation
 
 class RandomPool<T> {
-    private var objects = [T]()
-    private var weightages = [Int]()
+    fileprivate var objects = [T]()
+    fileprivate var weightages = [Int]()
     
     init(objects: [T]) {
         for object in objects {
@@ -30,7 +30,7 @@ class RandomPool<T> {
     init() {
     }
     
-    func addObject(object: T, weightage: Int) {
+    func addObject(_ object: T, weightage: Int) {
         if weightage <= 0 {
             fatalError()
         }

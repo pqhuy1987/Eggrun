@@ -13,10 +13,10 @@ import Foundation
 class DishDataController {
     static let singleton = DishDataController()
     
-    private let constructableEngine: ConstructableEngine<Dish>
+    fileprivate let constructableEngine: ConstructableEngine<Dish>
     
-    private static let STORAGE_FILE_NAME = "eggdex.data"
-    private static let STORAGE_KEY = "eggdex"
+    fileprivate static let STORAGE_FILE_NAME = "eggdex.data"
+    fileprivate static let STORAGE_KEY = "eggdex"
     
     var dishes: [Dish] {
         return constructableEngine.constructables
@@ -26,14 +26,14 @@ class DishDataController {
     }
     
     init() {
-        if let url = NSBundle.mainBundle().URLForResource("Dishes", withExtension: "plist") {
+        if let url = Bundle.main.url(forResource: "Dishes", withExtension: "plist") {
             constructableEngine = ConstructableEngine<Dish>(dataUrl: url, storageFileName: DishDataController.STORAGE_FILE_NAME)
         } else {
             fatalError()
         }
     }
     
-    func getResultDish(cooker: Cooker, condiments: [Condiment: Int], ingredients: [Ingredient]) -> (Dish, Bool) {
+    func getResultDish(_ cooker: Cooker, condiments: [Condiment: Int], ingredients: [Ingredient]) -> (Dish, Bool) {
         var resources = [Int: Int]()
         
         resources[cooker.rawValue] = 1
@@ -51,11 +51,11 @@ class DishDataController {
         return result
     }
     
-    func isDishActivated(dish: Dish) -> Bool {
+    func isDishActivated(_ dish: Dish) -> Bool {
         return constructableEngine.isConstructableActivated(dish)
     }
     
-    func isDishNew(dish: Dish) -> Bool {
+    func isDishNew(_ dish: Dish) -> Bool {
         return constructableEngine.isConstructableNew(dish)
     }
     

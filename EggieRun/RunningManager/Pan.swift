@@ -14,14 +14,14 @@
 import SpriteKit
 
 class Pan: Obstacle {
-    private static let IMAGE_NAME_LEFT = "pan-left"
-    private static let IMAGE_NAME_RIGHT = "pan-right"
-    private static let LID_HEIGHT: CGFloat = 80
-    private static let WIDTH_LEFT = Obstacle.WIDTH * 0.7
-    private static let WIDTH_RIGHT = Obstacle.WIDTH * 0.3
+    fileprivate static let IMAGE_NAME_LEFT = "pan-left"
+    fileprivate static let IMAGE_NAME_RIGHT = "pan-right"
+    fileprivate static let LID_HEIGHT: CGFloat = 80
+    fileprivate static let WIDTH_LEFT = Obstacle.WIDTH * 0.7
+    fileprivate static let WIDTH_RIGHT = Obstacle.WIDTH * 0.3
     
-    private var left: SKSpriteNode
-    private var right: SKSpriteNode
+    fileprivate var left: SKSpriteNode
+    fileprivate var right: SKSpriteNode
     
     init() {
         left = SKSpriteNode(imageNamed: Pan.IMAGE_NAME_LEFT)
@@ -32,14 +32,14 @@ class Pan: Obstacle {
         left.physicsBody!.categoryBitMask = BitMaskCategory.obstacle
         left.physicsBody!.contactTestBitMask = BitMaskCategory.hero
         left.physicsBody!.collisionBitMask = BitMaskCategory.hero | BitMaskCategory.obstacle
-        left.physicsBody!.dynamic = false
+        left.physicsBody!.isDynamic = false
         
         right = SKSpriteNode(imageNamed: Pan.IMAGE_NAME_RIGHT)
         right.scale(Pan.WIDTH_RIGHT)
         right.position.x = left.size.width + right.size.width / 2
         right.position.y = right.size.height / 2 + 2
         
-        super.init(cooker: .Pan)
+        super.init(cooker: .pan)
         addChild(left)
         addChild(right)
     }
@@ -48,7 +48,7 @@ class Pan: Obstacle {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func isDeadly(vector: CGVector, point: CGPoint) -> Bool {
+    override func isDeadly(_ vector: CGVector, point: CGPoint) -> Bool {
         return true
     }
     

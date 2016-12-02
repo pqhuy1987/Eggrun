@@ -10,63 +10,63 @@ import Foundation
 
 class ConstructableStorage<C: Constructable> {
     
-    private let storagePath: AnyObject
-    private let storageFileName: String
+    fileprivate let storagePath: AnyObject
+    fileprivate let storageFileName: String
     
-    private let ACTIVATION_KEY = "activation"
-    private let NEW_FLAG_KEY = "new_flag"
+    fileprivate let ACTIVATION_KEY = "activation"
+    fileprivate let NEW_FLAG_KEY = "new_flag"
     
-    private(set) var activationSet = Set<Int>()
-    private var newFlagSet = Set<Int>()
+    fileprivate(set) var activationSet = Set<Int>()
+    fileprivate var newFlagSet = Set<Int>()
     
     init(storageFileName: String) {
         NSLog("Initializing ConstructableStorage from file %@", storageFileName)
         
         self.storageFileName = storageFileName
         
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         if paths.count > 0 {
-            storagePath = paths[0]
+            storagePath = paths[0] as AnyObject
             readData()
         } else {
             fatalError("unable to locate storage")
         }
     }
     
-    private func path() -> String {
-        return storagePath.stringByAppendingPathComponent(storageFileName)
+    fileprivate func path() -> String {
+        return storagePath.appendingPathComponent(storageFileName)
     }
     
-    private func readData() {
-        let data = NSData(contentsOfFile: path())
+    fileprivate func readData() {
+        let data = try? Data(contentsOf: URL(fileURLWithPath: path()))
         if data != nil {
-            let archiver = NSKeyedUnarchiver(forReadingWithData: data!)
-            activationSet = Set((archiver.decodeObjectForKey(ACTIVATION_KEY) as? Array<Int>) ?? [])
-            newFlagSet = Set((archiver.decodeObjectForKey(NEW_FLAG_KEY) as? Array<Int>) ?? [])
+            let archiver = NSKeyedUnarchiver(forReadingWith: data!)
+            activationSet = Set((archiver.decodeObject(forKey: ACTIVATION_KEY) as? Array<Int>) ?? [])
+            newFlagSet = Set((archiver.decodeObject(forKey: NEW_FLAG_KEY) as? Array<Int>) ?? [])
             archiver.finishDecoding()
         }
         NSLog("ConstructableStorage read finished, data: %@", activationSet.debugDescription)
     }
     
-    private func writeData() -> Bool {
+    fileprivate func writeData() -> Bool {
         let data = NSMutableData()
-        let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
-        archiver.encodeObject(Array(activationSet), forKey: ACTIVATION_KEY)
-        archiver.encodeObject(Array(newFlagSet), forKey: NEW_FLAG_KEY)
+        let archiver = NSKeyedArchiver(forWritingWith: data)
+        archiver.encode(Array(activationSet), forKey: ACTIVATION_KEY)
+        archiver.encode(Array(newFlagSet), forKey: NEW_FLAG_KEY)
         archiver.finishEncoding()
         
-        return data.writeToFile(path(), atomically: true)
+        return data.write(toFile: path(), atomically: true)
     }
     
-    func isActivated(item: C) -> Bool {
+    func isActivated(_ item: C) -> Bool {
         return activationSet.contains(item.id)
     }
     
-    func hasNewFlag(item: C) -> Bool {
+    func hasNewFlag(_ item: C) -> Bool {
         return newFlagSet.contains(item.id)
     }
     
-    func activate(item: C) -> Bool {
+    func activate(_ item: C) -> Bool {
         if isActivated(item) {
             return true
         } else {

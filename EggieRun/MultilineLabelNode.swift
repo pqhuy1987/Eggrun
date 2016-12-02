@@ -48,7 +48,7 @@ class MultilineLabelNode: SKNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func update() {
+    fileprivate func update() {
         if (labels.count > 0) {
             for label in labels {
                 label.removeFromParent()
@@ -56,8 +56,8 @@ class MultilineLabelNode: SKNode {
             labels = []
         }
         
-        let separators = NSCharacterSet.whitespaceAndNewlineCharacterSet()
-        let words = text.componentsSeparatedByCharactersInSet(separators)
+        let separators = CharacterSet.whitespacesAndNewlines
+        let words = text.components(separatedBy: separators)
         
         var finalLine = false
         var wordCount = -1
@@ -96,13 +96,13 @@ class MultilineLabelNode: SKNode {
                 }
                 label.text = lineString
                 var linePos = pos
-                if (alignment == .Left) {
+                if (alignment == .left) {
                     linePos.x -= CGFloat(labelWidth / 2)
-                } else if (alignment == .Right) {
+                } else if (alignment == .right) {
                     linePos.x += CGFloat(labelWidth / 2)
                 }
                 linePos.y += CGFloat(-leading * lineCount)
-                label.position = CGPointMake(linePos.x, linePos.y)
+                label.position = CGPoint(x: linePos.x, y: linePos.y)
                 self.addChild(label)
                 labels.append(label)
             }

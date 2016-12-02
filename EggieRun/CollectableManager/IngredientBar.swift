@@ -16,28 +16,28 @@
 import SpriteKit
 
 class IngredientBar: SKSpriteNode {
-    private static let X_DISTANCE = CGFloat(100)
-    private static let X_OFFSET = CGFloat(45)
-    private static let MAX_GRID_NUMBER = 5
-    private static let IS_NOT_CONTAINED_INDEX = -1
+    fileprivate static let X_DISTANCE = CGFloat(100)
+    fileprivate static let X_OFFSET = CGFloat(45)
+    fileprivate static let MAX_GRID_NUMBER = 5
+    fileprivate static let IS_NOT_CONTAINED_INDEX = -1
     
     var ingredients = [Ingredient]()
-    private var ingredientGrids = [IngredientGrid]()
-    private var emptyGrids = [IngredientGrid]()
-    private var firstEmptyIndex: Int {
+    fileprivate var ingredientGrids = [IngredientGrid]()
+    fileprivate var emptyGrids = [IngredientGrid]()
+    fileprivate var firstEmptyIndex: Int {
         get {
             return ingredients.count
         }
     }
-    private var isFull: Bool {
+    fileprivate var isFull: Bool {
         get {
             return (ingredients.count >= IngredientBar.MAX_GRID_NUMBER)
         }
     }
     
     init() {
-        let barSize = CGSizeMake(500, 90)
-        super.init(texture: nil, color: UIColor.clearColor(), size: barSize)
+        let barSize = CGSize(width: 500, height: 90)
+        super.init(texture: nil, color: UIColor.clear, size: barSize)
         initializeEmptyGrids()
     }
     
@@ -45,13 +45,13 @@ class IngredientBar: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addIngredient(newIngredient: Ingredient) {
+    func addIngredient(_ newIngredient: Ingredient) {
         let newGrid = IngredientGrid(ingredientType: newIngredient)
         var index = IngredientBar.IS_NOT_CONTAINED_INDEX
         let isDuplicate = ingredients.contains(newIngredient)
         
         if (isDuplicate) {
-            index = ingredients.indexOf(newIngredient)!
+            index = ingredients.index(of: newIngredient)!
         } else if (!isFull) {
             updateEmptyGrids()
         }
@@ -60,26 +60,26 @@ class IngredientBar: SKSpriteNode {
         updateArray(newIngredient, newGrid: newGrid, index: index)
     }
     
-    func getNextGridX(newIngredient: Ingredient) -> CGFloat {
+    func getNextGridX(_ newIngredient: Ingredient) -> CGFloat {
         return CGFloat(min(firstEmptyIndex - (ingredients.contains(newIngredient) ? 1 : 0), 4)) * IngredientBar.X_DISTANCE + IngredientBar.X_OFFSET
     }
     
-    private func initializeEmptyGrids() {
+    fileprivate func initializeEmptyGrids() {
         for i in 0..<IngredientBar.MAX_GRID_NUMBER {
             let newEmptyGrid = IngredientGrid(ingredientType: nil)
-            let position = CGPointMake(CGFloat(i) * IngredientBar.X_DISTANCE + IngredientBar.X_OFFSET, 0)
+            let position = CGPoint(x: CGFloat(i) * IngredientBar.X_DISTANCE + IngredientBar.X_OFFSET, y: 0)
             newEmptyGrid.position = position
             addChild(newEmptyGrid)
             emptyGrids.append(newEmptyGrid)
         }
     }
     
-    private func updateEmptyGrids() {
+    fileprivate func updateEmptyGrids() {
         emptyGrids[0].removeFromParent()
         emptyGrids.removeFirst()
     }
     
-    private func updateBarLayout(newGrid: IngredientGrid, index: Int) {
+    fileprivate func updateBarLayout(_ newGrid: IngredientGrid, index: Int) {
         let isDuplicate = (index != IngredientBar.IS_NOT_CONTAINED_INDEX)
         if (isDuplicate) {
             animateMovingGridByOne(index)
@@ -89,30 +89,30 @@ class IngredientBar: SKSpriteNode {
         animateAddingNewGrid(newGrid, isDuplicate: isDuplicate)
     }
     
-    private func animateMovingGridByOne(startIndex: Int) {
+    fileprivate func animateMovingGridByOne(_ startIndex: Int) {
         for i in startIndex..<ingredients.count {
             let grid = ingredientGrids[i]
             // moving animation
             if (i==startIndex) {
-                let fadingOut = SKAction.fadeOutWithDuration(0.5)
-                grid.runAction(fadingOut, completion: { () -> Void in
+                let fadingOut = SKAction.fadeOut(withDuration: 0.5)
+                grid.run(fadingOut, completion: { () -> Void in
                     grid.removeFromParent()
                 })
             } else {
-                let movingAction = SKAction.moveByX(-IngredientBar.X_DISTANCE, y: 0, duration: 0.5)
-                grid.runAction(movingAction)
+                let movingAction = SKAction.moveBy(x: -IngredientBar.X_DISTANCE, y: 0, duration: 0.5)
+                grid.run(movingAction)
             }
         }
     }
     
-    private func animateAddingNewGrid(newGrid: IngredientGrid, isDuplicate: Bool) {
+    fileprivate func animateAddingNewGrid(_ newGrid: IngredientGrid, isDuplicate: Bool) {
         let nextIndex = (isFull || isDuplicate) ? firstEmptyIndex-1 : firstEmptyIndex
-        let position = CGPointMake(CGFloat(nextIndex) * IngredientBar.X_DISTANCE + IngredientBar.X_OFFSET, 0)
+        let position = CGPoint(x: CGFloat(nextIndex) * IngredientBar.X_DISTANCE + IngredientBar.X_OFFSET, y: 0)
         newGrid.position = position
         addChild(newGrid)
     }
     
-    private func updateArray(newIngredient: Ingredient, newGrid: IngredientGrid, index: Int) {
+    fileprivate func updateArray(_ newIngredient: Ingredient, newGrid: IngredientGrid, index: Int) {
         if (index != IngredientBar.IS_NOT_CONTAINED_INDEX) {
             moveGridByOne(index)
         } else if (isFull) {
@@ -122,8 +122,8 @@ class IngredientBar: SKSpriteNode {
         ingredientGrids.append(newGrid)
     }
     
-    private func moveGridByOne(startIndex: Int) {
-        ingredients.removeAtIndex(startIndex)
-        ingredientGrids.removeAtIndex(startIndex)
+    fileprivate func moveGridByOne(_ startIndex: Int) {
+        ingredients.remove(at: startIndex)
+        ingredientGrids.remove(at: startIndex)
     }
 }

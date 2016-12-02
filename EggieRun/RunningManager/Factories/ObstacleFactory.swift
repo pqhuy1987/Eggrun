@@ -13,13 +13,13 @@
 import UIKit
 
 class ObstacleFactory {
-    func next(availableCookers: [Cooker]) -> Obstacle {
+    func next(_ availableCookers: [Cooker]) -> Obstacle {
         let type = availableCookers[Int(arc4random_uniform(UInt32(availableCookers.count)))]
         
         switch type {
-        case .Pot:
+        case .pot:
             return Pot()
-        case .Oven:
+        case .oven:
             return Oven()
         default:
             return Pan()

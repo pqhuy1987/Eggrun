@@ -15,34 +15,34 @@
 import SpriteKit
 
 class Platform: SKNode {
-    private enum Type {
-        case Closet, Shelf
+    fileprivate enum `Type` {
+        case closet, shelf
     }
     
-    private static let CLOSET_GAP_SIZE: CGFloat = 300
-    private static let LEFT_IMAGE_NAMES: [Type: String] = [.Closet: "closet-left", .Shelf: "shelf-left"]
-    private static let MIDDLE_IMAGE_NAMES: [Type: String] = [.Closet: "closet-middle", .Shelf: "shelf-middle"]
-    private static let RIGHT_IMAGE_NAMES: [Type: String] = [.Closet: "closet-right", .Shelf: "shelf-right"]
-    private static let BASELINE_HEIGHTS: [Type: CGFloat] = [.Closet: -200, .Shelf: 408]
-    private static let HEIGHT: [Type: CGFloat] = [.Closet: 274, .Shelf: 50]
+    fileprivate static let CLOSET_GAP_SIZE: CGFloat = 300
+    fileprivate static let LEFT_IMAGE_NAMES: [Type: String] = [.closet: "closet-left", .shelf: "shelf-left"]
+    fileprivate static let MIDDLE_IMAGE_NAMES: [Type: String] = [.closet: "closet-middle", .shelf: "shelf-middle"]
+    fileprivate static let RIGHT_IMAGE_NAMES: [Type: String] = [.closet: "closet-right", .shelf: "shelf-right"]
+    fileprivate static let BASELINE_HEIGHTS: [Type: CGFloat] = [.closet: -200, .shelf: 408]
+    fileprivate static let HEIGHT: [Type: CGFloat] = [.closet: 274, .shelf: 50]
 
     var width: CGFloat = 0.0
     let followingGapSize: CGFloat
     let height: CGFloat
     let baselineHeight: CGFloat
     
-    static func makeCloset(numOfMidPiece: Int) -> Platform {
-        let imageNames = generateImageNameArray(.Closet, numOfMidPiece: numOfMidPiece)
-        return Platform(imageNames: imageNames, gapSize: Platform.CLOSET_GAP_SIZE, platformHeight: Platform.HEIGHT[.Closet]!, platformBaselineHeight: Platform.BASELINE_HEIGHTS[.Closet]!)
+    static func makeCloset(_ numOfMidPiece: Int) -> Platform {
+        let imageNames = generateImageNameArray(.closet, numOfMidPiece: numOfMidPiece)
+        return Platform(imageNames: imageNames, gapSize: Platform.CLOSET_GAP_SIZE, platformHeight: Platform.HEIGHT[.closet]!, platformBaselineHeight: Platform.BASELINE_HEIGHTS[.closet]!)
     }
     
-    static func makeShelf(numOfMidPiece: Int, gapSize: CGFloat) -> Platform {
-        let imageNames = generateImageNameArray(.Shelf, numOfMidPiece: numOfMidPiece)
+    static func makeShelf(_ numOfMidPiece: Int, gapSize: CGFloat) -> Platform {
+        let imageNames = generateImageNameArray(.shelf, numOfMidPiece: numOfMidPiece)
         
-        return Platform(imageNames: imageNames, gapSize: gapSize, platformHeight: Platform.HEIGHT[.Shelf]!, platformBaselineHeight: Platform.BASELINE_HEIGHTS[.Shelf]!)
+        return Platform(imageNames: imageNames, gapSize: gapSize, platformHeight: Platform.HEIGHT[.shelf]!, platformBaselineHeight: Platform.BASELINE_HEIGHTS[.shelf]!)
     }
     
-    static private func generateImageNameArray(type: Type, numOfMidPiece: Int) -> [String] {
+    static fileprivate func generateImageNameArray(_ type: Type, numOfMidPiece: Int) -> [String] {
         var imageNames = [Platform.LEFT_IMAGE_NAMES[type]!]
         for _ in 0..<numOfMidPiece {
             imageNames.append(Platform.MIDDLE_IMAGE_NAMES[type]!)
@@ -52,7 +52,7 @@ class Platform: SKNode {
         return imageNames
     }
     
-    private init(imageNames: [String], gapSize: CGFloat, platformHeight: CGFloat, platformBaselineHeight: CGFloat) {
+    fileprivate init(imageNames: [String], gapSize: CGFloat, platformHeight: CGFloat, platformBaselineHeight: CGFloat) {
         followingGapSize = gapSize
         height = platformHeight
         baselineHeight = platformBaselineHeight
@@ -74,13 +74,13 @@ class Platform: SKNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func constructPhysicsBodyFor(texture: SKTexture) -> SKPhysicsBody {
+    fileprivate func constructPhysicsBodyFor(_ texture: SKTexture) -> SKPhysicsBody {
         let body = SKPhysicsBody(texture: texture, alphaThreshold: GlobalConstants.PHYSICS_BODY_ALPHA_THRESHOLD, size: texture.size())
         
         body.categoryBitMask = BitMaskCategory.platform
         body.contactTestBitMask = BitMaskCategory.hero
         body.collisionBitMask = BitMaskCategory.hero
-        body.dynamic = false
+        body.isDynamic = false
         return body
     }
 }

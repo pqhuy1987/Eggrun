@@ -16,7 +16,7 @@ extension Dictionary {
         }
     }
     
-    func map<OutValue>(@noescape transform: Value throws -> OutValue) rethrows -> [Key: OutValue] {
+    func map<OutValue>(_ transform: (Value) throws -> OutValue) rethrows -> [Key: OutValue] {
         return Dictionary<Key, OutValue>(try map { (k, v) in (k, try transform(v)) })
     }
 }

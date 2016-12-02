@@ -9,5 +9,5 @@
 import Foundation
 
 enum CollectableType {
-    case Ingredient, Condiment
+    case ingredient, condiment
 }

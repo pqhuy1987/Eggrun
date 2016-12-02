@@ -13,9 +13,9 @@
 import SpriteKit
 
 class ClosetFactory {
-    private static let MAX_NUM_OF_MID_PIECE: UInt32 = 4
+    fileprivate static let MAX_NUM_OF_MID_PIECE: UInt32 = 4
     
-    private var isFirst = true
+    fileprivate var isFirst = true
     
     func next() -> Platform {
         let numOfMid: Int

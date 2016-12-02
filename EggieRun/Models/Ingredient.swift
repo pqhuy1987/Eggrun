@@ -9,20 +9,20 @@
 import SpriteKit
 
 enum Ingredient: Int {
-    private static let DISTANCES_TURNING_POINT = [Milestone.PresentShelf, Milestone.ChallengeDarkness].map({ $0.requiredDistance })
+    fileprivate static let DISTANCES_TURNING_POINT = [Milestone.presentShelf, Milestone.challengeDarkness].map({ $0.requiredDistance })
     
-    case GreenOnion = 100, Tomato = 101, Cream = 102, Milk = 103, Rice = 104, Bread = 105, Bacon = 106, Strawberry = 107, Chocolate = 108, Surstromming = 109
+    case greenOnion = 100, tomato = 101, cream = 102, milk = 103, rice = 104, bread = 105, bacon = 106, strawberry = 107, chocolate = 108, surstromming = 109
     
-    static let ALL_VALUES: [Ingredient] = [.GreenOnion, .Tomato, .Cream, .Milk, .Rice, .Bread, .Bacon, .Strawberry, .Chocolate, .Surstromming]
+    static let ALL_VALUES: [Ingredient] = [.greenOnion, .tomato, .cream, .milk, .rice, .bread, .bacon, .strawberry, .chocolate, .surstromming]
     
-    static private let FLAT_TEXTURES: [Ingredient: SKTexture] = Dictionary(ALL_VALUES.map({ ($0, SKTexture(imageNamed: $0.flatImageNamed)) }))
-    static private let FINE_TEXTURES: [Ingredient: SKTexture] = Dictionary(ALL_VALUES.map({ ($0, SKTexture(imageNamed: $0.fineImageNamed)) }))
+    static fileprivate let FLAT_TEXTURES: [Ingredient: SKTexture] = Dictionary(ALL_VALUES.map({ ($0, SKTexture(imageNamed: $0.flatImageNamed)) }))
+    static fileprivate let FINE_TEXTURES: [Ingredient: SKTexture] = Dictionary(ALL_VALUES.map({ ($0, SKTexture(imageNamed: $0.fineImageNamed)) }))
     
-    static private let rarityTable: [[Ingredient]] = [[.Milk], [.GreenOnion, .Tomato, .Cream, .Rice, .Bacon, .Strawberry], [.Bread, .Chocolate], [.Surstromming]]
+    static fileprivate let rarityTable: [[Ingredient]] = [[.milk], [.greenOnion, .tomato, .cream, .rice, .bacon, .strawberry], [.bread, .chocolate], [.surstromming]]
     
-    static private let rarityPools = rarityTable.map({ RandomPool(objects: $0) })
+    static fileprivate let rarityPools = rarityTable.map({ RandomPool(objects: $0) })
     
-    static func next(distance: Int) -> Ingredient {
+    static func next(_ distance: Int) -> Ingredient {
         let randomPool: RandomPool<RandomPool<Ingredient>>!
         if distance < Ingredient.DISTANCES_TURNING_POINT[0] {
             randomPool = RandomPool(objects: [rarityPools[0], rarityPools[1]], weightages: [3, 10])
@@ -34,36 +34,36 @@ enum Ingredient: Int {
         return randomPool.draw().draw()
     }
     
-    private var imageNamed: String {
+    fileprivate var imageNamed: String {
         switch self {
-        case .GreenOnion:
+        case .greenOnion:
             return "green-onion"
-        case .Tomato:
+        case .tomato:
             return "tomato"
-        case .Cream:
+        case .cream:
             return "cream"
-        case .Milk:
+        case .milk:
             return "milk"
-        case .Rice:
+        case .rice:
             return "rice"
-        case .Bread:
+        case .bread:
             return "bread"
-        case .Bacon:
+        case .bacon:
             return "bacon"
-        case .Strawberry:
+        case .strawberry:
             return "strawberry"
-        case .Chocolate:
+        case .chocolate:
             return "chocolate"
-        case .Surstromming:
+        case .surstromming:
             return "surstromming"
         }
     }
     
-    private var flatImageNamed: String {
+    fileprivate var flatImageNamed: String {
         return "flat-" + imageNamed
     }
     
-    private var fineImageNamed: String {
+    fileprivate var fineImageNamed: String {
         return "fine-" + imageNamed
     }
     

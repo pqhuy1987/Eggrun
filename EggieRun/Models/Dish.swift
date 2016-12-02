@@ -12,10 +12,10 @@ import SpriteKit
 class Dish: Constructable {
     
     enum DistanceMode: Int {
-        case Euclidean = 0, Ignore = 1, Same = 2
+        case euclidean = 0, ignore = 1, same = 2
     }
     
-    private static let PROB_PRECISION: Double = 20000
+    fileprivate static let PROB_PRECISION: Double = 20000
     
     let id: Int
     let name: String
@@ -55,7 +55,7 @@ class Dish: Constructable {
         self.distanceMode = DistanceMode(rawValue: data["distanceMode"] as! Int)!
     }
     
-    func canConstruct(resources: [Int: Int]) -> Int {
+    func canConstruct(_ resources: [Int: Int]) -> Int {
         var cooker: Cooker?
         var condiments = [Condiment: Int]()
         var ingredients = [Ingredient]()
@@ -84,7 +84,7 @@ class Dish: Constructable {
     // <0: force appear, the less the number the higher the priority
     // =0: cannot appear
     // >0: randomly appear, the larger the number the higher the probability
-    func canConstruct(cooker: Cooker, condiments: [Condiment: Int], ingredients: [Ingredient]) -> Int {
+    func canConstruct(_ cooker: Cooker, condiments: [Condiment: Int], ingredients: [Ingredient]) -> Int {
         if self.requiredCooker != nil && cooker != self.requiredCooker {
             return 0
         }
@@ -98,13 +98,13 @@ class Dish: Constructable {
         var distanceSupplement: Double = 0
         let standardizedCondiments = Dish.standardizeCondiments(condiments)
         switch self.distanceMode {
-        case .Ignore:
+        case .ignore:
             distanceSupplement = Dish.distanceReduce(0)
             break
-        case .Euclidean:
+        case .euclidean:
             distanceSupplement = Dish.distanceReduce(Dish.euclideanDistance(standardizedCondiments, withStandard: self.standardCondiments))
             break
-        case .Same:
+        case .same:
             if Dish.euclideanDistance(standardizedCondiments, withStandard: self.standardCondiments) == 0 {
                 distanceSupplement = Dish.distanceReduce(0)
             } else {
@@ -115,7 +115,7 @@ class Dish: Constructable {
         return Int(distanceSupplement * Dish.PROB_PRECISION * self.standardWeight)
     }
     
-    static private func standardizeCondiments(data: [Condiment: Int]) -> [Condiment: Double] {
+    static fileprivate func standardizeCondiments(_ data: [Condiment: Int]) -> [Condiment: Double] {
         var total = 0
         for condiment in Condiment.ALL_VALUES {
             total += data[condiment] ?? 0
@@ -127,7 +127,7 @@ class Dish: Constructable {
         }
     }
     
-    static private func euclideanDistance(data: [Condiment: Double], withStandard: [Condiment: Double]) -> Double {
+    static fileprivate func euclideanDistance(_ data: [Condiment: Double], withStandard: [Condiment: Double]) -> Double {
         var distance: Double = 0
         
         for condiment in Condiment.ALL_VALUES {
@@ -137,7 +137,7 @@ class Dish: Constructable {
         return sqrt(distance)
     }
     
-    static private func distanceReduce(distance: Double) -> Double {
+    static fileprivate func distanceReduce(_ distance: Double) -> Double {
         return 1.0/(4.0 * distance + 1)
     }
 }

@@ -13,7 +13,7 @@
 import SpriteKit
 
 class Collectable: SKSpriteNode {
-    static let SIZE = CGSizeMake(80, 80)
+    static let SIZE = CGSize(width: 80, height: 80)
     
     let type: CollectableType
     let ingredient: Ingredient?
@@ -25,18 +25,18 @@ class Collectable: SKSpriteNode {
     init(ingredientType: Ingredient, gapSize: CGFloat) {
         ingredient = ingredientType
         condiment = nil
-        type = .Ingredient
+        type = .ingredient
         followingGapSize = gapSize
-        super.init(texture: ingredient?.fineTexture, color: UIColor.clearColor(), size: Collectable.SIZE)
+        super.init(texture: ingredient?.fineTexture, color: UIColor.clear, size: Collectable.SIZE)
         initializePhysicsProperty()
     }
     
     init(condimentType: Condiment, gapSize: CGFloat) {
         ingredient = nil
         condiment = condimentType
-        type = .Condiment
+        type = .condiment
         followingGapSize = gapSize
-        super.init(texture: condiment?.texture, color: UIColor.clearColor(), size: Collectable.SIZE)
+        super.init(texture: condiment?.texture, color: UIColor.clear, size: Collectable.SIZE)
         initializePhysicsProperty()
     }
     
@@ -44,11 +44,11 @@ class Collectable: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func initializePhysicsProperty() {
+    fileprivate func initializePhysicsProperty() {
         physicsBody = SKPhysicsBody(texture: texture!, alphaThreshold: GlobalConstants.PHYSICS_BODY_ALPHA_THRESHOLD, size: size)
         physicsBody?.categoryBitMask = BitMaskCategory.collectable
         physicsBody?.contactTestBitMask = BitMaskCategory.hero
-        physicsBody?.dynamic = false
+        physicsBody?.isDynamic = false
         zPosition = 1
     }
     

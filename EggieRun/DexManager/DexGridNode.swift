@@ -12,23 +12,23 @@ import SpriteKit
 // Description: A class on the left side of the Scene that displays all dishes. It manages all DexItemNode.
 
 class DexGridNode: SKSpriteNode {
-    static private let ITEMS_PER_ROW = 4
-    static private let HORIZONTAL_PADDING = CGFloat(20)
-    static private let VERTICAL_PADDING = CGFloat(60)
-    static private let EMITTER_NODE_Z_POSITION = CGFloat(3)
+    static fileprivate let ITEMS_PER_ROW = 4
+    static fileprivate let HORIZONTAL_PADDING = CGFloat(20)
+    static fileprivate let VERTICAL_PADDING = CGFloat(60)
+    static fileprivate let EMITTER_NODE_Z_POSITION = CGFloat(3)
     
-    private var width: CGFloat
-    private var height: CGFloat
+    fileprivate var width: CGFloat
+    fileprivate var height: CGFloat
 
-    private(set) var dishNodes = [DexItemNode]()
-    private var selectedEmitterNode: SKEmitterNode!
+    fileprivate(set) var dishNodes = [DexItemNode]()
+    fileprivate var selectedEmitterNode: SKEmitterNode!
     
     
     init(sceneHeight: CGFloat, sceneWidth: CGFloat, dishList:[Dish]) {
         width = DexScene.GRID_WIDTH_RATIO * sceneWidth
         height = sceneHeight - DexScene.TOP_BAR_HEIGHT
         
-        super.init(texture: nil, color: UIColor.clearColor(), size: CGSize(width: width, height: height))
+        super.init(texture: nil, color: UIColor.clear, size: CGSize(width: width, height: height))
         self.position = CGPoint(x: 0, y: 0)
         self.anchorPoint = CGPoint(x: 0, y: 0)
         
@@ -51,14 +51,14 @@ class DexGridNode: SKSpriteNode {
         selectedEmitterNode = SKEmitterNode(fileNamed: "DexSelected.sks")
         selectedEmitterNode.particlePositionRange.dx = itemSize
         selectedEmitterNode.particlePosition.y = -itemSize / 2
-        selectedEmitterNode.hidden = true
+        selectedEmitterNode.isHidden = true
         selectedEmitterNode.zPosition = DexGridNode.EMITTER_NODE_Z_POSITION
         addChild(selectedEmitterNode)
     }
     
-    func moveEmitter(item: DexItemNode) {
+    func moveEmitter(_ item: DexItemNode) {
         selectedEmitterNode.position = item.position
-        selectedEmitterNode.hidden = false
+        selectedEmitterNode.isHidden = false
     }
     
     required init?(coder aDecoder: NSCoder) {

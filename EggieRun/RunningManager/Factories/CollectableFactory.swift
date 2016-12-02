@@ -13,12 +13,12 @@
 import UIKit
 
 class CollectableFactory {
-    private static let MAX_NUM_OF_GAP: UInt32 = 5
-    private static let UNIT_GAP_SIZE: CGFloat = 200
-    private static let RATIO_INGREDIENT: UInt32 = 5
-    private static let RATIO_CONDIMENT: UInt32 = 1
+    fileprivate static let MAX_NUM_OF_GAP: UInt32 = 5
+    fileprivate static let UNIT_GAP_SIZE: CGFloat = 200
+    fileprivate static let RATIO_INGREDIENT: UInt32 = 5
+    fileprivate static let RATIO_CONDIMENT: UInt32 = 1
     
-    func next(currentDistance: Int) -> Collectable {
+    func next(_ currentDistance: Int) -> Collectable {
         let random = arc4random_uniform(CollectableFactory.RATIO_INGREDIENT + CollectableFactory.RATIO_CONDIMENT)
         let numOfGap = CGFloat(arc4random_uniform(CollectableFactory.MAX_NUM_OF_GAP) + 1)
         let gapSize = numOfGap * CollectableFactory.UNIT_GAP_SIZE

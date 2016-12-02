@@ -14,37 +14,37 @@
 import SpriteKit
 
 class Pot: Obstacle {
-    private static let IMAGE_NAME_BODY = "pot-body"
-    private static let IMAGE_NAME_LID = "pot-lid"
-    private static let PADDING: CGFloat = -20
-    private static let LID_HEIGHT: CGFloat = 80
-    private static let NUM_FRAME: Double = 2
+    fileprivate static let IMAGE_NAME_BODY = "pot-body"
+    fileprivate static let IMAGE_NAME_LID = "pot-lid"
+    fileprivate static let PADDING: CGFloat = -20
+    fileprivate static let LID_HEIGHT: CGFloat = 80
+    fileprivate static let NUM_FRAME: Double = 2
 
-    private var body: SKSpriteNode
-    private var lid: SKSpriteNode
+    fileprivate var body: SKSpriteNode
+    fileprivate var lid: SKSpriteNode
 
     init() {
         body = SKSpriteNode(imageNamed: Pot.IMAGE_NAME_BODY)
         body.scale(Obstacle.WIDTH)
         body.position.x = body.size.width / 2
         body.position.y = body.size.height / 2
-        body.physicsBody = SKPhysicsBody(rectangleOfSize: body.size)
+        body.physicsBody = SKPhysicsBody(rectangleOf: body.size)
         body.physicsBody!.categoryBitMask = BitMaskCategory.obstacle
         body.physicsBody!.contactTestBitMask = BitMaskCategory.hero
         body.physicsBody!.collisionBitMask = BitMaskCategory.hero | BitMaskCategory.obstacle
-        body.physicsBody!.dynamic = false
+        body.physicsBody!.isDynamic = false
         
         lid = SKSpriteNode(imageNamed: Pot.IMAGE_NAME_LID)
         lid.scale(Obstacle.WIDTH)
         lid.position.x = lid.size.width / 2
         lid.position.y = lid.size.height / 2 + Pot.LID_HEIGHT
-        lid.physicsBody = SKPhysicsBody(rectangleOfSize: lid.size)
+        lid.physicsBody = SKPhysicsBody(rectangleOf: lid.size)
         lid.physicsBody!.categoryBitMask = BitMaskCategory.obstacle
         lid.physicsBody!.contactTestBitMask = BitMaskCategory.hero
         lid.physicsBody!.collisionBitMask = BitMaskCategory.hero | BitMaskCategory.obstacle
-        lid.physicsBody!.dynamic = false
+        lid.physicsBody!.isDynamic = false
         
-        super.init(cooker: .Pot)
+        super.init(cooker: .pot)
         heightPadding = Pot.PADDING
         addChild(body)
         addChild(lid)
@@ -54,11 +54,11 @@ class Pot: Obstacle {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func isDeadly(vector: CGVector, point: CGPoint) -> Bool {
+    override func isDeadly(_ vector: CGVector, point: CGPoint) -> Bool {
         return abs(vector.dy) < 0.5
     }
     
     override func animateClose() {
-        lid.runAction(SKAction.moveBy(CGVectorMake(0, body.size.height - Pot.LID_HEIGHT), duration: Obstacle.ATLAS_TIME_PER_FRAME * Pot.NUM_FRAME))
+        lid.run(SKAction.move(by: CGVector(dx: 0, dy: body.size.height - Pot.LID_HEIGHT), duration: Obstacle.ATLAS_TIME_PER_FRAME * Pot.NUM_FRAME))
     }
 }

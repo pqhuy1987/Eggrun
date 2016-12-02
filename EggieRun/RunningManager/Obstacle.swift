@@ -34,7 +34,7 @@ class Obstacle: SKNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func isDeadly(vector: CGVector, point: CGPoint) -> Bool {
+    func isDeadly(_ vector: CGVector, point: CGPoint) -> Bool {
         fatalError(Obstacle.ERROR_MESSAGE)
     }
     

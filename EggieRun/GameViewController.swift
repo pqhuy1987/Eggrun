@@ -12,7 +12,7 @@ import SpriteKit
 class GameViewController: UIViewController {
     
     override func viewDidLoad() {
-        UIApplication.sharedApplication().idleTimerDisabled = true
+        UIApplication.shared.isIdleTimerDisabled = true
         super.viewDidLoad()
         if let scene = MenuScene.singleton {
             let skView = self.view as! SKView
@@ -20,18 +20,18 @@ class GameViewController: UIViewController {
             skView.showsNodeCount = true
             
             skView.ignoresSiblingOrder = true
-            scene.scaleMode = .AspectFill
+            scene.scaleMode = .aspectFill
             
             skView.presentScene(scene)
         }
     }
     
-    override func shouldAutorotate() -> Bool {
+    override var shouldAutorotate : Bool {
         return true
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return .Landscape
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        return .landscape
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,7 +39,7 @@ class GameViewController: UIViewController {
         // Release any cached data, images, etc that aren't in use.
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
 }

@@ -15,22 +15,22 @@
 import SpriteKit
 
 class FlavourBar: SKSpriteNode {
-    private static let BLUE_COLOUR = UIColor(red: 128.0/255, green: 227.0/255, blue: 250.0/255, alpha: 1)
-    private static let YELLOW_COLOUR = UIColor(red: 255.0/255, green: 235.0/255, blue: 153.0/255, alpha: 1)
-    private static let RED_COLOUR = UIColor(red: 254.0/255, green: 89.0/255, blue: 77.0/255, alpha: 1)
+    fileprivate static let BLUE_COLOUR = UIColor(red: 128.0/255, green: 227.0/255, blue: 250.0/255, alpha: 1)
+    fileprivate static let YELLOW_COLOUR = UIColor(red: 255.0/255, green: 235.0/255, blue: 153.0/255, alpha: 1)
+    fileprivate static let RED_COLOUR = UIColor(red: 254.0/255, green: 89.0/255, blue: 77.0/255, alpha: 1)
     
-    private static let BAR_LENGTH = CGFloat(100)
-    private static let BAR_HEIGHT = CGFloat(15)
+    fileprivate static let BAR_LENGTH = CGFloat(100)
+    fileprivate static let BAR_HEIGHT = CGFloat(15)
     
-    private var sugarBar: SKSpriteNode!
-    private var saltBar: SKSpriteNode!
-    private var chiliBar: SKSpriteNode!
+    fileprivate var sugarBar: SKSpriteNode!
+    fileprivate var saltBar: SKSpriteNode!
+    fileprivate var chiliBar: SKSpriteNode!
     
-    private var sugar: Float = 0
-    private var salt: Float = 0
-    private var chili: Float = 0
+    fileprivate var sugar: Float = 0
+    fileprivate var salt: Float = 0
+    fileprivate var chili: Float = 0
     
-    private var condimentCount: Float {
+    fileprivate var condimentCount: Float {
         get {
             return sugar + salt + chili
         }
@@ -39,15 +39,15 @@ class FlavourBar: SKSpriteNode {
     var condimentDictionary: [Condiment: Int] {
         get {
             var dictionary = [Condiment: Int]()
-            dictionary[Condiment.Salt] = Int(salt)
-            dictionary[Condiment.Sugar] = Int(sugar)
-            dictionary[Condiment.Chili] = Int(chili)
+            dictionary[Condiment.salt] = Int(salt)
+            dictionary[Condiment.sugar] = Int(sugar)
+            dictionary[Condiment.chili] = Int(chili)
             return dictionary
         }
     }
     
     init() {
-        super.init(texture: nil, color: UIColor.grayColor(), size: CGSizeMake(FlavourBar.BAR_LENGTH, FlavourBar.BAR_HEIGHT))
+        super.init(texture: nil, color: UIColor.gray, size: CGSize(width: FlavourBar.BAR_LENGTH, height: FlavourBar.BAR_HEIGHT))
         initializeBar()
     }
     
@@ -55,67 +55,67 @@ class FlavourBar: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addCondiment(newCondiment: Condiment) {
+    func addCondiment(_ newCondiment: Condiment) {
         switch newCondiment {
-        case .Salt:
+        case .salt:
             salt += 1
-        case .Sugar:
+        case .sugar:
             sugar += 1
-        case .Chili:
+        case .chili:
             chili += 1
         }
         updateBar()
     }
     
-    private func getSingleFlavourPercentage(condiment: Condiment) -> Float {
+    fileprivate func getSingleFlavourPercentage(_ condiment: Condiment) -> Float {
         switch condiment {
-        case .Salt:
+        case .salt:
             return salt/condimentCount
-        case .Sugar:
+        case .sugar:
             return sugar/condimentCount
-        case .Chili:
+        case .chili:
             return chili/condimentCount
         }
     }
     
-    private func getSingleFlavourLength(condiment: Condiment) -> CGFloat {
+    fileprivate func getSingleFlavourLength(_ condiment: Condiment) -> CGFloat {
         switch condiment {
-        case .Salt:
-            return CGFloat(getSingleFlavourPercentage(Condiment.Salt)) * FlavourBar.BAR_LENGTH
-        case .Sugar:
-            return CGFloat(getSingleFlavourPercentage(Condiment.Sugar)) * FlavourBar.BAR_LENGTH
-        case .Chili:
-            return CGFloat(getSingleFlavourPercentage(Condiment.Chili)) * FlavourBar.BAR_LENGTH
+        case .salt:
+            return CGFloat(getSingleFlavourPercentage(Condiment.salt)) * FlavourBar.BAR_LENGTH
+        case .sugar:
+            return CGFloat(getSingleFlavourPercentage(Condiment.sugar)) * FlavourBar.BAR_LENGTH
+        case .chili:
+            return CGFloat(getSingleFlavourPercentage(Condiment.chili)) * FlavourBar.BAR_LENGTH
         }
     }
     
-    private func getSingleBarX(condiment: Condiment) -> CGFloat {
+    fileprivate func getSingleBarX(_ condiment: Condiment) -> CGFloat {
         switch condiment {
-        case .Salt:
-            return getSingleFlavourLength(Condiment.Salt)/2 - FlavourBar.BAR_LENGTH/2
-        case .Sugar:
-            return getSingleFlavourLength(Condiment.Salt) + getSingleFlavourLength(Condiment.Sugar)/2 - FlavourBar.BAR_LENGTH/2
-        case .Chili:
-            return getSingleFlavourLength(Condiment.Salt) + getSingleFlavourLength(Condiment.Sugar) + getSingleFlavourLength(Condiment.Chili)/2 - FlavourBar.BAR_LENGTH/2
+        case .salt:
+            return getSingleFlavourLength(Condiment.salt)/2 - FlavourBar.BAR_LENGTH/2
+        case .sugar:
+            return getSingleFlavourLength(Condiment.salt) + getSingleFlavourLength(Condiment.sugar)/2 - FlavourBar.BAR_LENGTH/2
+        case .chili:
+            return getSingleFlavourLength(Condiment.salt) + getSingleFlavourLength(Condiment.sugar) + getSingleFlavourLength(Condiment.chili)/2 - FlavourBar.BAR_LENGTH/2
         }
     }
     
-    private func initializeBar() {
-        saltBar = SKSpriteNode(color: FlavourBar.BLUE_COLOUR, size: CGSizeMake(getSingleFlavourLength(Condiment.Salt), FlavourBar.BAR_HEIGHT))
-        sugarBar = SKSpriteNode(color: FlavourBar.YELLOW_COLOUR, size: CGSizeMake(getSingleFlavourLength(Condiment.Sugar), FlavourBar.BAR_HEIGHT))
-        chiliBar = SKSpriteNode(color: FlavourBar.RED_COLOUR, size: CGSizeMake(getSingleFlavourLength(Condiment.Chili), FlavourBar.BAR_HEIGHT))
+    fileprivate func initializeBar() {
+        saltBar = SKSpriteNode(color: FlavourBar.BLUE_COLOUR, size: CGSize(width: getSingleFlavourLength(Condiment.salt), height: FlavourBar.BAR_HEIGHT))
+        sugarBar = SKSpriteNode(color: FlavourBar.YELLOW_COLOUR, size: CGSize(width: getSingleFlavourLength(Condiment.sugar), height: FlavourBar.BAR_HEIGHT))
+        chiliBar = SKSpriteNode(color: FlavourBar.RED_COLOUR, size: CGSize(width: getSingleFlavourLength(Condiment.chili), height: FlavourBar.BAR_HEIGHT))
         addChild(saltBar)
         addChild(sugarBar)
         addChild(chiliBar)
     }
     
-    private func updateBar() {
-        saltBar.position.x = getSingleBarX(Condiment.Salt)
-        saltBar.size.width = getSingleFlavourLength(Condiment.Salt)
-        sugarBar.position.x = getSingleBarX(Condiment.Sugar)
-        sugarBar.size.width = getSingleFlavourLength(Condiment.Sugar)
-        chiliBar.position.x = getSingleBarX(Condiment.Chili)
-        chiliBar.size.width = getSingleFlavourLength(Condiment.Chili)
+    fileprivate func updateBar() {
+        saltBar.position.x = getSingleBarX(Condiment.salt)
+        saltBar.size.width = getSingleFlavourLength(Condiment.salt)
+        sugarBar.position.x = getSingleBarX(Condiment.sugar)
+        sugarBar.size.width = getSingleFlavourLength(Condiment.sugar)
+        chiliBar.position.x = getSingleBarX(Condiment.chili)
+        chiliBar.size.width = getSingleFlavourLength(Condiment.chili)
     }
 
 }

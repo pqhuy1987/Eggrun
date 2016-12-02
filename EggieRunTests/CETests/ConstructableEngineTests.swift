@@ -14,7 +14,7 @@ class ConstructableEngineTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        if let url = NSBundle(forClass: self.dynamicType).URLForResource("TestConstructables", withExtension: "plist") {
+        if let url = Bundle(for: type(of: self)).url(forResource: "TestConstructables", withExtension: "plist") {
             constructableEngine = ConstructableEngine<TestConstructable>(dataUrl: url, storageFileName: "test-constructables")
             constructableEngine.clearActivated()
             constructableEngine.clearNewFlags()

@@ -8,5 +8,5 @@
 
 import Foundation
 enum Cooker: Int {
-    case Drop = 0, DistanceForceDeath = -1, Pan = 1, Oven = 2, Pot = 3
+    case drop = 0, distanceForceDeath = -1, pan = 1, oven = 2, pot = 3
 }

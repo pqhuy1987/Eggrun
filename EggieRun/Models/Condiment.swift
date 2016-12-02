@@ -9,25 +9,25 @@
 import SpriteKit
 
 enum Condiment: Int {
-    case Salt = 10, Sugar = 11, Chili = 12
+    case salt = 10, sugar = 11, chili = 12
     
-    static let ALL_VALUES: [Condiment] = [.Salt, .Sugar, .Chili]
+    static let ALL_VALUES: [Condiment] = [.salt, .sugar, .chili]
     
-    static private let TEXTURES: [Condiment: SKTexture] = Dictionary(ALL_VALUES.map({ ($0, SKTexture(imageNamed: $0.imageNamed)) }))
+    static fileprivate let TEXTURES: [Condiment: SKTexture] = Dictionary(ALL_VALUES.map({ ($0, SKTexture(imageNamed: $0.imageNamed)) }))
     
-    static private let randomPool = RandomPool<Condiment>(objects: [.Salt, .Sugar, .Chili], weightages: [5, 4, 1])
+    static fileprivate let randomPool = RandomPool<Condiment>(objects: [.salt, .sugar, .chili], weightages: [5, 4, 1])
     
     static func next() -> Condiment {
         return randomPool.draw()
     }
     
-    private var imageNamed: String {
+    fileprivate var imageNamed: String {
         switch self {
-        case .Salt:
+        case .salt:
             return "salt"
-        case .Sugar:
+        case .sugar:
             return "sugar"
-        case .Chili:
+        case .chili:
             return "chili"
         }
     }

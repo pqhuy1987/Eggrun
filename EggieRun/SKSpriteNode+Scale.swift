@@ -9,7 +9,7 @@
 import SpriteKit
 
 extension SKSpriteNode {
-    func scale(width: Double) {
+    func scale(_ width: Double) {
         let aspectRatio = Double(size.height / size.width)
         size = CGSize(width: width, height: width * aspectRatio)
     }

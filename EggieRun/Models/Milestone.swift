@@ -9,42 +9,42 @@
 import SpriteKit
 
 enum Milestone: Int {
-    case PresentPot = 0, PresentShelf = 1, PresentOven = 2, ChallengeDarkness = 3, PresentPan = 4, ChallengeQuake = 5, IncreasePot = 6, EndOyakodon = 7
+    case presentPot = 0, presentShelf = 1, presentOven = 2, challengeDarkness = 3, presentPan = 4, challengeQuake = 5, increasePot = 6, endOyakodon = 7
     
-    static let ALL_VALUES: [Milestone] = [.PresentPot, .PresentShelf, .PresentOven, .ChallengeDarkness, .PresentPan, .ChallengeQuake, .IncreasePot, .EndOyakodon]
+    static let ALL_VALUES: [Milestone] = [.presentPot, .presentShelf, .presentOven, .challengeDarkness, .presentPan, .challengeQuake, .increasePot, .endOyakodon]
     
-    private static let DISTANCES = [10000, 20000, 30000, 40000, 50000, 65000, 85000, 100000]
+    fileprivate static let DISTANCES = [10000, 20000, 30000, 40000, 50000, 65000, 85000, 100000]
     
     var requiredDistance: Int {
         return Milestone.DISTANCES[rawValue] / GlobalConstants.DEV_DISTANCE_DIVISOR
     }
     
-    private var imageNamed: String {
+    fileprivate var imageNamed: String {
         switch self {
-        case .PresentPot:
+        case .presentPot:
             return "present-pot-milestone"
-        case .PresentShelf:
+        case .presentShelf:
             return "present-shelf-milestone"
-        case .PresentOven:
+        case .presentOven:
             return "present-oven-milestone"
-        case .ChallengeDarkness:
+        case .challengeDarkness:
             return "challenge-darkness-milestone"
-        case .PresentPan:
+        case .presentPan:
             return "present-pan-milestone"
-        case .ChallengeQuake:
+        case .challengeQuake:
             return "challenge-quake-milestone"
-        case .IncreasePot:
+        case .increasePot:
             return "increase-pot-milestone"
-        case .EndOyakodon:
+        case .endOyakodon:
             return "end-oyakodon-milestone"
         }
     }
     
-    private var monochromeImageNamed: String {
+    fileprivate var monochromeImageNamed: String {
         return "mono-" + imageNamed
     }
     
-    private var colouredImageNamed: String {
+    fileprivate var colouredImageNamed: String {
         return "colo-" + imageNamed
     }
     

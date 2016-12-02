@@ -10,9 +10,9 @@ import Foundation
 
 class ConstructableEngine<C: Constructable> {
     
-    private(set) var constructables = [C]()
-    private var constructableIdsMap = [Int: C]()
-    private let storage: ConstructableStorage<C>
+    fileprivate(set) var constructables = [C]()
+    fileprivate var constructableIdsMap = [Int: C]()
+    fileprivate let storage: ConstructableStorage<C>
     
     var activatedConstructables: [C] {
         return storage.activationSet.map({ constructableIdsMap[$0]! })
@@ -21,10 +21,10 @@ class ConstructableEngine<C: Constructable> {
     // dataUrl should point to a plist file which is a Array.
     // Each element in the array should be a Dictionary which will be used to
     // initialize a Constructable
-    init(dataUrl: NSURL, storageFileName: String) {
-        NSLog("Initializing ConstructableEngine from dataUrl %@", dataUrl)
+    init(dataUrl: URL, storageFileName: String) {
+        //NSLog("Initializing ConstructableEngine from dataUrl %@", dataUrl)
         
-        let data = NSArray(contentsOfURL: dataUrl)!
+        let data = NSArray(contentsOf: dataUrl)!
         for element in data {
             let constructable = C(data: element as! NSDictionary)
             constructables.append(constructable)
@@ -35,7 +35,7 @@ class ConstructableEngine<C: Constructable> {
     }
     
     // The tuple returned is (ConstructableResult: C, isFirstTime: Bool)
-    func getConstructResult(resources: [Int: Int]) -> (C, Bool) {
+    func getConstructResult(_ resources: [Int: Int]) -> (C, Bool) {
         let randomPool = RandomPool<C>()
         
         var forceAppearConstructablePriority = 0
@@ -68,15 +68,15 @@ class ConstructableEngine<C: Constructable> {
         return (constructResult!, newFlag)
     }
     
-    func isConstructableActivated(item: C) -> Bool {
+    func isConstructableActivated(_ item: C) -> Bool {
         return storage.isActivated(item)
     }
     
-    func isConstructableNew(item: C) -> Bool {
+    func isConstructableNew(_ item: C) -> Bool {
         return storage.hasNewFlag(item)
     }
     
-    func forceActivateConstructable(item: C) -> Bool {
+    func forceActivateConstructable(_ item: C) -> Bool {
         return storage.activate(item)
     }
     

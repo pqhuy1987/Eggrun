@@ -12,19 +12,19 @@ import SpriteKit
 // Description: A class for individual dishes shown on the DexGridNode.
 
 class DexItemNode: SKNode {
-    static private let IMAGE_RATIO = CGFloat(1.5)
-    static private let BACKGROUND_Z = CGFloat(1)
-    static private let DISH_Z = CGFloat(2)
-    static private let QMARK_Z = CGFloat(3)
-    static private let QMARK_FONTSIZE = CGFloat(40)
-    static private let NEW_LABEL_Z_POSITION = CGFloat(5)
-    static private let NEW_LABEL_WIDTH = CGFloat(40)
-    static private let NEW_LABEL_HEIGHT = CGFloat(17)
+    static fileprivate let IMAGE_RATIO = CGFloat(1.5)
+    static fileprivate let BACKGROUND_Z = CGFloat(1)
+    static fileprivate let DISH_Z = CGFloat(2)
+    static fileprivate let QMARK_Z = CGFloat(3)
+    static fileprivate let QMARK_FONTSIZE = CGFloat(40)
+    static fileprivate let NEW_LABEL_Z_POSITION = CGFloat(5)
+    static fileprivate let NEW_LABEL_WIDTH = CGFloat(40)
+    static fileprivate let NEW_LABEL_HEIGHT = CGFloat(17)
     
     let dish: Dish
-    private(set) var activated = true
+    fileprivate(set) var activated = true
     
-    private static func ITEM_BACKGROUND_IMAGENAMED(rarity: Int) -> String {
+    fileprivate static func ITEM_BACKGROUND_IMAGENAMED(_ rarity: Int) -> String {
         return "item-background-" + String(rarity)
     }
     
@@ -45,9 +45,9 @@ class DexItemNode: SKNode {
         if !DishDataController.singleton.isDishActivated(dish) {
             effectNode.filter = DexScene.UNACTIVATED_FILTER
             let questionMarkNode = SKLabelNode(text: "?")
-            questionMarkNode.color = UIColor.whiteColor()
+            questionMarkNode.color = UIColor.white
             questionMarkNode.fontSize = DexItemNode.QMARK_FONTSIZE
-            questionMarkNode.verticalAlignmentMode = .Center
+            questionMarkNode.verticalAlignmentMode = .center
             questionMarkNode.zPosition = DexItemNode.QMARK_Z
             addChild(questionMarkNode)
             activated = false

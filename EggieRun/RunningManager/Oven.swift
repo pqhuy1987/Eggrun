@@ -14,24 +14,24 @@
 import SpriteKit
 
 class Oven: Obstacle {
-    private static let IMAGE_NAME = "oven-open"
-    private static let ATLAS_NAME = "oven-close.atlas"
-    private static let PADDING: CGFloat = -27
+    fileprivate static let IMAGE_NAME = "oven-open"
+    fileprivate static let ATLAS_NAME = "oven-close.atlas"
+    fileprivate static let PADDING: CGFloat = -27
     
-    private var body: SKSpriteNode
+    fileprivate var body: SKSpriteNode
     
     init() {
         body = SKSpriteNode(imageNamed: Oven.IMAGE_NAME)
         body.scale(Obstacle.WIDTH)
         body.position.x = body.size.width / 2
         body.position.y = body.size.height / 2
-        body.physicsBody = SKPhysicsBody(rectangleOfSize: body.size)
+        body.physicsBody = SKPhysicsBody(rectangleOf: body.size)
         body.physicsBody!.categoryBitMask = BitMaskCategory.obstacle
         body.physicsBody!.contactTestBitMask = BitMaskCategory.hero
         body.physicsBody!.collisionBitMask = BitMaskCategory.hero | BitMaskCategory.obstacle
-        body.physicsBody!.dynamic = false
+        body.physicsBody!.isDynamic = false
         
-        super.init(cooker: .Oven)
+        super.init(cooker: .oven)
         heightPadding = Oven.PADDING
         addChild(body)
     }
@@ -40,13 +40,13 @@ class Oven: Obstacle {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func isDeadly(vector: CGVector, point: CGPoint) -> Bool {
+    override func isDeadly(_ vector: CGVector, point: CGPoint) -> Bool {
         return abs(vector.dy) < 0.5
     }
     
     override func animateClose() {
         let atlas = SKTextureAtlas(named: Oven.ATLAS_NAME)
-        let textures = atlas.textureNames.sort().map({ atlas.textureNamed($0) })
-        body.runAction(SKAction.repeatActionForever(SKAction.animateWithTextures(textures, timePerFrame: Obstacle.ATLAS_TIME_PER_FRAME)))
+        let textures = atlas.textureNames.sorted().map({ atlas.textureNamed($0) })
+        body.run(SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: Obstacle.ATLAS_TIME_PER_FRAME)))
     }
 }

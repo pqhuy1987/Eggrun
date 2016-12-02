@@ -20,15 +20,15 @@ extension SKScene {
         }
     }
     
-    func changeBackground(imageName: String) {
+    func changeBackground(_ imageName: String) {
         if background != nil {
             background!.removeFromParent()
         }
         
         background = SKSpriteNode(imageNamed: imageName)
-        background!.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
+        background!.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         background!.zPosition = -1
-        background!.size = UIScreen.mainScreen().bounds.size
+        background!.size = UIScreen.main.bounds.size
         
         addChild(background!)
     }

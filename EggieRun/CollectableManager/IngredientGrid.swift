@@ -13,17 +13,17 @@
 import SpriteKit
 
 class IngredientGrid: SKSpriteNode {
-    private static let GRIDSIZE = CGSizeMake(90, 90)
-    private static let IMGSIZE = CGSizeMake(75, 75)
-    private static let GRID_IMG_NAME = "ingredient-grid"
+    fileprivate static let GRIDSIZE = CGSize(width: 90, height: 90)
+    fileprivate static let IMGSIZE = CGSize(width: 75, height: 75)
+    fileprivate static let GRID_IMG_NAME = "ingredient-grid"
     
-    private let ingredient: Ingredient?
-    private var ingredientNode: SKSpriteNode? = nil
+    fileprivate let ingredient: Ingredient?
+    fileprivate var ingredientNode: SKSpriteNode? = nil
     
     init(ingredientType: Ingredient?) {
         ingredient = ingredientType
         let texture = SKTexture(imageNamed: IngredientGrid.GRID_IMG_NAME)
-        super.init(texture: texture, color: UIColor.clearColor(), size: IngredientGrid.GRIDSIZE)
+        super.init(texture: texture, color: UIColor.clear, size: IngredientGrid.GRIDSIZE)
         initializeIngredientNode()
     }
     
@@ -31,9 +31,9 @@ class IngredientGrid: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func initializeIngredientNode() {
-        ingredientNode = SKSpriteNode(texture: ingredient?.flatTexture, color: UIColor.clearColor(), size: IngredientGrid.IMGSIZE)
-        ingredientNode!.position = CGPointMake(0, 0)
+    fileprivate func initializeIngredientNode() {
+        ingredientNode = SKSpriteNode(texture: ingredient?.flatTexture, color: UIColor.clear, size: IngredientGrid.IMGSIZE)
+        ingredientNode!.position = CGPoint(x: 0, y: 0)
         ingredientNode!.zPosition = zPosition + 1
         addChild(ingredientNode!)
     }

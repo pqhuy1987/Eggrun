@@ -9,31 +9,31 @@
 import SpriteKit
 
 class MenuScene: SKScene {
-    static private let START_BUTTON_IMAGENAMED = "start-button"
-    static private let DEX_BUTTON_IMAGENAMED = "eggdex-button"
-    static private let MUTE_BUTTON_IMAGENAMED = "mute-button"
+    static fileprivate let START_BUTTON_IMAGENAMED = "start-button"
+    static fileprivate let DEX_BUTTON_IMAGENAMED = "eggdex-button"
+    static fileprivate let MUTE_BUTTON_IMAGENAMED = "mute-button"
     
-    static private let START_BUTTON_POSITION = CGPoint(x: 215, y: 420)
-    static private let DEX_BUTTON_POSITION = CGPoint(x: 210, y: 270)
-    static private let MUTE_BUTTON_OFFSET: CGFloat = 30
-    static private let MUTE_BUTTON_SIZE = CGSizeMake(40, 40)
+    static fileprivate let START_BUTTON_POSITION = CGPoint(x: 215, y: 420)
+    static fileprivate let DEX_BUTTON_POSITION = CGPoint(x: 210, y: 270)
+    static fileprivate let MUTE_BUTTON_OFFSET: CGFloat = 30
+    static fileprivate let MUTE_BUTTON_SIZE = CGSize(width: 40, height: 40)
     
-    static private let MUTE_BUTTON_ALPHA_ON: CGFloat = 1
-    static private let MUTE_BUTTON_ALPHA_OFF: CGFloat = 0.4
+    static fileprivate let MUTE_BUTTON_ALPHA_ON: CGFloat = 1
+    static fileprivate let MUTE_BUTTON_ALPHA_OFF: CGFloat = 0.4
     
-    static private let TRANSITION = SKTransition.doorsOpenVerticalWithDuration(0.5)
-    static let BACK_TRANSITION = SKTransition.doorsCloseVerticalWithDuration(0.5)
+    static fileprivate let TRANSITION = SKTransition.doorsOpenVertical(withDuration: 0.5)
+    static let BACK_TRANSITION = SKTransition.doorsCloseVertical(withDuration: 0.5)
     
     static let singleton = MenuScene(fileNamed: "MenuScene")
     
-    private var buttonPlay: SKSpriteNode!
-    private var buttonDex: SKSpriteNode!
-    private var buttonMute: SKSpriteNode!
+    fileprivate var buttonPlay: SKSpriteNode!
+    fileprivate var buttonDex: SKSpriteNode!
+    fileprivate var buttonMute: SKSpriteNode!
     
-    private var initialized = false
+    fileprivate var initialized = false
     
-    override func didMoveToView(view: SKView) {
-        BGMPlayer.singleton.moveToStatus(.Menu)
+    override func didMove(to view: SKView) {
+        BGMPlayer.singleton.moveToStatus(.menu)
         
         if initialized {
             return
@@ -52,14 +52,14 @@ class MenuScene: SKScene {
         
         buttonMute = SKSpriteNode(imageNamed: MenuScene.MUTE_BUTTON_IMAGENAMED)
         buttonMute.size = MenuScene.MUTE_BUTTON_SIZE
-        buttonMute.position = CGPointMake(frame.maxX - MenuScene.MUTE_BUTTON_OFFSET, frame.maxY - MenuScene.MUTE_BUTTON_OFFSET)
+        buttonMute.position = CGPoint(x: frame.maxX - MenuScene.MUTE_BUTTON_OFFSET, y: frame.maxY - MenuScene.MUTE_BUTTON_OFFSET)
         buttonMute.alpha = MenuScene.MUTE_BUTTON_ALPHA_OFF
         self.addChild(buttonMute)
         
         DishDataController.singleton
     }
     
-    private func toggleMuted() {
+    fileprivate func toggleMuted() {
         if BGMPlayer.singleton.muted {
             BGMPlayer.singleton.muted = false
             buttonMute.alpha = MenuScene.MUTE_BUTTON_ALPHA_OFF
@@ -69,22 +69,22 @@ class MenuScene: SKScene {
         }
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
-        let touchLocation = touch.locationInNode(self)
+        let touchLocation = touch.location(in: self)
         
-        if buttonPlay.containsPoint(touchLocation) {
+        if buttonPlay.contains(touchLocation) {
             let gameScene = GameScene(size: self.size)
             self.view?.presentScene(gameScene, transition: MenuScene.TRANSITION)
-        } else if buttonDex.containsPoint(touchLocation) {
+        } else if buttonDex.contains(touchLocation) {
             let dexScene = DexScene(size: self.size)
             self.view?.presentScene(dexScene, transition: MenuScene.TRANSITION)
-        } else if buttonMute.containsPoint(touchLocation) {
+        } else if buttonMute.contains(touchLocation) {
             toggleMuted()
         }
     }
     
-    override func update(currentTime: CFTimeInterval) {
+    override func update(_ currentTime: TimeInterval) {
         /* Called before each frame is rendered */
     }
 }
